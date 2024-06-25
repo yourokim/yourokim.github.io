@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>garden of 365 clovers</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: black;
+            color: white;
+            font-size: 12px;
+        }
+
+        .clover {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .leaf {
+            position: relative;
+            width: 30px;
+            height: 27px;
+        }
+
+        .leaf:before, .leaf:after {
+            position: absolute;
+            content: "";
+            left: 15px;
+            top: 0;
+            width: 15px;
+            height: 24px;
+            background: rgb(179, 179, 179);
+            border-radius: 15px 15px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .leaf:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .leaf.green:before, .leaf.green:after {
+            background: rgb(0, 255, 0);
+        }
+
+        .leaf1 {
+            top: 0;
+            left: 15px;
+        }
+
+        .leaf2 {
+            top: -10px;
+            left: 5px;
+            transform: rotate(-120deg);
+        }
+
+        .leaf3 {
+            top: -37px;
+            left: 25px;
+            transform: rotate(120deg);
+        }
+
+        .month-space {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+            margin: 5px;
+            position: relative;
+            text-align: center;
+            line-height: 110px;
+            font-size: 20px;
+            transform: translateY(-40px); /* move the month names 20px higher */
+        }
+
+        .hover-box {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            z-index: 10;
+            font-size: 10px;
+            width: 200px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], textarea {
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+            width: 800px;
+            height: 30px;
+            resize: none;
+        }
+
+        button, input[type="submit"] {
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: rgb(0, 255, 0);
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+
+        .print-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .print-button2 {
+            position: absolute;
+            top: 10px;
+            right: 120px;
+        }
+
+        .email-display {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .month-header {
+            cursor: pointer;
+            margin-bottom: 5px;
+            font-size: 20px;
+            border: 2px solid transparent;
+            padding: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .month-header:hover {
+            border-color: white;
+        }
+
+        .month-content {
+            display: none;
+            margin-left: 20px;
+        }
+
+        .clover-input {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Additional Styles for Alignment */
+        #loginForm {
+            text-align: left;
+        }
+
+        #loginForm label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        /* Adjusting the numbering position */
+        .clover-page-number {
+            position: relative;
+            top: -35px;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-page">
+        <h2>login form</h2>
+        <form id="loginForm">
+            <label for="id">id:</label>
+            <input type="text" id="id" name="id" required><br><br>
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    <div id="main-page" style="display: none;">
+        <h1>garden of 365 clovers</h1>
+        <button class="print-button" onclick="goToPrintPage()">view as list</button>
+        <button class="print-button2" onclick="goToAboutPage()" >about</button>
+        <div class="email-display" id="emailDisplay"></div>
+        <div class="clover-container"></div>
+    </div>
+
+    <div id="clover-page" style="display: none;">
+        <h1>3 leaves of the day</h1>
+        <div>
+            <b class="clover-page-number">1.</b>
+            <textarea id="input1" oninput="updateClover(1)"></textarea>
+        </div>
+        <div>
+            <b class="clover-page-number">2.</b>
+            <textarea id="input2" oninput="updateClover(2)"></textarea>
+        </div>
+        <div>
+            <b class="clover-page-number">3.</b>
+            <textarea id="input3" oninput="updateClover(3)"></textarea>
+        </div>
+        <br>
+        <button onclick="goBack()">back to the garden</button>
+    </div>
+
+    <div id="print-page" style="display: none;">
+        <button class="print-button" onclick="goBack()">back to the garden</button>
+        <h1>list of clovers</h1>
+        <div id="print-container"></div>
+    </div>
+
+    <div id="about-page" style="display: none;">
+        <button class="print-button2" onclick="goBack()">back to the garden</button>
+        <h1>about...</h1>
+        <p>garden of 365 cloves is a page where you can note and archive any three things of your choice daily.<br>
+            <br>
+            for example: <br>
+            -three things you were grateful for today<br>
+            -three nice things you have done to people today<br>
+            -three things you would like to remember from today<br>
+            -three compliments you have given to others today<br>
+            <br>
+            in hopes of making your everyday life more mindful and positive...
+            </p>
+    </div>
+
+    <script>
+        let currentClover = 1;
+        const defaultCloverData = Array.from({ length: 365 }, () => ['', '', '']);
+        let cloverData = defaultCloverData;
+        let hoverTimeout;
+
+        const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // prevent the form from submitting
+
+            // get the id and password values
+            var id = document.getElementById('id').value;
+            var password = document.getElementById('password').value;
+
+            // create a key based on id and password
+            var key = id + '_' + password;
+
+            // store the key in local storage
+            localStorage.setItem('key', key);
+
+            // load clover data for the user
+            loadCloverData();
+
+            // display the id and hide the login form
+            displayUserId();
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+        });
+
+        function loadCloverData() {
+            const key = localStorage.getItem('key');
+            cloverData = JSON.parse(localStorage.getItem(key)) || defaultCloverData;
+            updateAllClovers();
+        }
+
+        function saveCloverData() {
+            const key = localStorage.getItem('key');
+            localStorage.setItem(key, JSON.stringify(cloverData));
+        }
+
+        function displayUserId() {
+            const key = localStorage.getItem('key');
+            if (key) {
+                document.getElementById('emailDisplay').innerText = 'logged in as: ' + key.split('_')[0];
+            } else {
+                document.getElementById('emailDisplay').innerText = '';
+            }
+        }
+
+        // function to create clovers for each month
+        function createClovers() {
+            const cloverContainer = document.querySelector('.clover-container');
+            for (let month = 0; month < 12; month++) {
+                // add an empty space before each month
+                const monthSpace = document.createElement('div');
+                monthSpace.className = 'month-space';
+                monthSpace.innerText = monthNames[month];
+                monthSpace.onclick = () => showMonthClovers(month);
+                cloverContainer.appendChild(monthSpace);
+
+                for (let day = 1; day <= daysInMonth[month]; day++) {
+                    const clover = document.createElement('div');
+                    clover.className = 'clover';
+                    let zz = day;
+                    for (let z = 0; z < month; z++) {
+                        zz += daysInMonth[z];
+                    }
+                    clover.onclick = () => goToCloverPage(zz);
+                    clover.onmouseover = () => showHoverBoxWithDelay(zz);
+                    clover.onmouseout = () => hideHoverBoxWithDelay(zz);
+
+                    for (let i = 1; i <= 3; i++) {
+                        const leaf = document.createElement('div');
+                        leaf.className = `leaf leaf${i}`;
+                        if (cloverData[zz - 1][i - 1]) {
+                            leaf.classList.add('green');
+                        }
+                        clover.appendChild(leaf);
+                    }
+
+                    const hoverBox = document.createElement('div');
+                    hoverBox.className = 'hover-box';
+                    hoverBox.innerHTML = ` 
+                        <p>day</p>  
+                        <p id="hover-text1-${zz}"></p>
+                        <p id="hover-text2-${zz}"></p>
+                        <p id="hover-text3-${zz}"></p>
+                    `;
+                    clover.appendChild(hoverBox);
+
+                    cloverContainer.appendChild(clover);
+                }
+            }
+        }
+
+        function updateAllClovers() {
+            const clovers = document.querySelectorAll('.clover');
+            clovers.forEach((clover, index) => {
+                for (let i = 1; i <= 3; i++) {
+                    const leaf = clover.querySelector(`.leaf${i}`);
+                    if (cloverData[index][i - 1]) {
+                        leaf.classList.add('green');
+                    } else {
+                        leaf.classList.remove('green');
+                    }
+                }
+                document.getElementById(`hover-text1-${index + 1}`).innerText = '1.' + cloverData[index][0];
+                document.getElementById(`hover-text2-${index + 1}`).innerText = '2.' + cloverData[index][1];
+                document.getElementById(`hover-text3-${index + 1}`).innerText = '3.' + cloverData[index][2];
+            });
+        }
+
+        function goToCloverPage(cloverNumber) {
+            currentClover = cloverNumber;
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('clover-page').style.display = 'block';
+            document.getElementById('input1').value = cloverData[cloverNumber - 1][0];
+            document.getElementById('input2').value = cloverData[cloverNumber - 1][1];
+            document.getElementById('input3').value = cloverData[cloverNumber - 1][2];
+        }
+
+        function goBack() {
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('clover-page').style.display = 'none';
+            document.getElementById('print-page').style.display = 'none';
+            document.getElementById('about-page').style.display = 'none';
+            saveCloverData(); // save the data when user goes back to main page
+        }
+
+        function goToPrintPage() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('print-page').style.display = 'block';
+            printCloverData();
+        }
+
+        function goToAboutPage() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('about-page').style.display = 'block';
+        }
+
+        function printCloverData() {
+            const printContainer = document.getElementById('print-container');
+            printContainer.innerHTML = ''; // clear previous data
+            for (let month = 0; month < 12; month++) {
+                const monthHeader = document.createElement('div');
+                monthHeader.className = 'month-header';
+                monthHeader.innerText = monthNames[month];
+                monthHeader.onclick = () => toggleMonthContent(month);
+                printContainer.appendChild(monthHeader);
+
+                const monthContent = document.createElement('div');
+                monthContent.className = 'month-content';
+                monthContent.id = `month-content-${month}`;
+                for (let day = 1; day <= daysInMonth[month]; day++) {
+                    const cloverNumber = getCloverNumber(month, day);
+                    const cloverText = document.createElement('div');
+                    cloverText.innerHTML = `<b>day ${cloverNumber}:</b> <br> 1. ${cloverData[cloverNumber - 1][0]} <br> 2. ${cloverData[cloverNumber - 1][1]} <br> 3. ${cloverData[cloverNumber - 1][2]}<br><br>`;
+                    monthContent.appendChild(cloverText);
+                }
+                printContainer.appendChild(monthContent);
+            }
+        }
+
+        function updateClover(inputIndex) {
+            const input = document.getElementById(`input${inputIndex}`).value;
+            cloverData[currentClover - 1][inputIndex - 1] = input;
+            saveCloverData();
+
+            const clover = document.querySelectorAll('.clover')[currentClover - 1];
+            for (let i = 1; i <= 3; i++) {
+                const leaf = clover.querySelector(`.leaf${i}`);
+                if (cloverData[currentClover - 1][i - 1]) {
+                    leaf.classList.add('green');
+                } else {
+                    leaf.classList.remove('green');
+                }
+            }
+
+            document.getElementById(`hover-text1-${currentClover}`).innerText = cloverData[currentClover - 1][0];
+            document.getElementById(`hover-text2-${currentClover}`).innerText = cloverData[currentClover - 1][1];
+            document.getElementById(`hover-text3-${currentClover}`).innerText = cloverData[currentClover - 1][2];
+        }
+
+        function showHoverBox(cloverNumber) {
+            document.getElementById(`hover-text1-${cloverNumber}`).innerText = '1.' + cloverData[cloverNumber - 1][0];
+            document.getElementById(`hover-text2-${cloverNumber}`).innerText = '2.' + cloverData[cloverNumber - 1][1];
+            document.getElementById(`hover-text3-${cloverNumber}`).innerText = '3.' + cloverData[cloverNumber - 1][2];
+            document.getElementById(`hover-text1-${cloverNumber}`).parentElement.style.display = 'block';
+        }
+
+        function hideHoverBox(cloverNumber) {
+            document.getElementById(`hover-text1-${cloverNumber}`).innerText = '';
+            document.getElementById(`hover-text2-${cloverNumber}`).innerText = '';
+            document.getElementById(`hover-text3-${cloverNumber}`).innerText = '';
+            document.getElementById(`hover-text1-${cloverNumber}`).parentElement.style.display = 'none';
+        }
+
+        function showHoverBoxWithDelay(cloverNumber) {
+            hoverTimeout = setTimeout(() => showHoverBox(cloverNumber), 250); // 500ms delay
+        }
+
+        function hideHoverBoxWithDelay(cloverNumber) {
+            clearTimeout(hoverTimeout);
+            hideHoverBox(cloverNumber);
+        }
+
+        function showMonthClovers(month) {
+            const printContainer = document.getElementById('print-container');
+            printContainer.innerHTML = ''; // clear previous data
+            const monthHeader = document.createElement('h2');
+            monthHeader.innerText = monthNames[month];
+            printContainer.appendChild(monthHeader);
+            for (let day = 1; day <= daysInMonth[month]; day++) {
+                const cloverNumber = getCloverNumber(month, day);
+                const cloverText = document.createElement('div');
+                cloverText.innerHTML = `<b>day ${cloverNumber}:</b> <br> 1. ${cloverData[cloverNumber - 1][0]} <br> 2. ${cloverData[cloverNumber - 1][1]} <br> 3. ${cloverData[cloverNumber - 1][2]}`;
+                printContainer.appendChild(cloverText);
+            }
+        }
+
+        function toggleMonthContent(month) {
+            const monthContent = document.getElementById(`month-content-${month}`);
+            if (monthContent.style.display === 'none' || monthContent.style.display === '') {
+                monthContent.style.display = 'block';
+            } else {
+                monthContent.style.display = 'none';
+            }
+        }
+
+        function getCloverNumber(month, day) {
+            let cloverNumber = day;
+            for (let z = 0; z < month; z++) {
+                cloverNumber += daysInMonth[z];
+            }
+            return cloverNumber;
+        }
+
+        createClovers();
+        loadCloverData();
+        displayUserId();
+    </script>
+</body>
+</html>
