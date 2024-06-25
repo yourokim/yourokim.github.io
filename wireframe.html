@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Wireframe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid black;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .header .search-bar {
+            width: 50%;
+            display: flex;
+            border: 1px solid black;
+        }
+        .header .search-bar input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-right: 1px solid black;
+        }
+        .header .search-bar button {
+            padding: 6px;
+            border: none;
+            background: none;
+            border-left: 1px solid black;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 15%;
+            padding: 10px;
+            border-right: 1px solid black;
+            height: calc(100vh - 50px);
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid black;
+        }
+        .main-content {
+            width: 85%;
+            padding: 10px;
+        }
+        .video-player {
+            height: 400px;
+            margin-bottom: 20px;
+            border: 1px solid black;
+        }
+        .video-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .video-item {
+            width: 30%;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .video-item .thumbnail {
+            height: 150px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        .video-item .title {
+            height: 20px;
+            margin-bottom: 5px;
+            border: 1px solid black;
+        }
+        .video-item .channel {
+            height: 15px;
+            width: 50%;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">YouTube</div>
+        <div class="search-bar">
+            
+            <button>Search</button>
+        </div>
+        <div class="user-options">User</div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>Home</li>
+                <li>Trending</li>
+                <li>Subscriptions</li>
+                <li>Library</li>
+                <li>History</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="video-player">Video Player</div>
+            <div class="video-list">
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+                <div class="video-item">
+                    <div class="thumbnail"></div>
+                    <div class="title"></div>
+                    <div class="channel"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<body>
+    <a href="./personal_website.html"><h1>Click here to return to main page!</h1></a>
+    </body>
+</html>

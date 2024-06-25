@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Spotted Cow Emoji</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .cow {
+            position: relative;
+            width: 200px;
+            height: 180px;
+        }
+
+        .body {
+            position: absolute;
+            top: 40px;
+            width: 140px;
+            height: 100px;
+            background-color: pink;
+            border-radius: 70px / 50px;
+            border: 2px solid black;
+        }
+
+        .spot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: deeppink;
+            border-radius: 50%;
+        }
+
+        .spot1 { top: 10px; left: 10px; }
+        .spot2 { top: 30px; right: 20px; }
+        .spot3 { bottom: 20px; left: 40px; }
+
+        .head {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 90px;
+            background-color: pink;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+
+        .eye {
+            position: absolute;
+            top: 30px;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
+
+        .eye::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 7px;
+            height: 7px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .eye-left { left: 20px; }
+        .eye-right { right: 20px; }
+
+        .mouth {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 20px;
+            background-color: white;
+            border-radius: 20px / 10px;
+            border: 1px solid black;
+        }
+
+        .ear {
+            position: absolute;
+            top: 20px;
+            width: 30px;
+            height: 20px;
+            background-color: pink;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+
+        .ear-left { left: -20px; }
+        .ear-right { right: -20px; }
+    </style>
+</head>
+<body>
+    <div class="cow">
+        <div class="body">
+            <div class="spot spot1"></div>
+            <div class="spot spot2"></div>
+            <div class="spot spot3"></div>
+        </div>
+        <div class="head">
+            <div class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+            <div class="mouth"></div>
+            <div class="ear ear-left"></div>
+            <div class="ear ear-right"></div>
+        </div>
+    </div>
+</body>
+<body>
+    <a href="./personal_website.html"><h6>Click here to return to main page!</h6></a>
+    </body>
+</html>
