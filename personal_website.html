@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ABOUT PAGE</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        #clock {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 4px 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            background: lightgray;
+        }
+
+        .dark-mode {
+            background-color: #333;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="darkmode-toggle" style="position: absolute; top: 10px; right: 10px; padding: 4px 8px; font-size: 9px; border-radius: 5px; background: lightgray; cursor: pointer;">
+        dark mode
+    </div>
+
+    <div id="clock"></div>
+
+    <div class="container">
+        <h1>welcome to youro's personal website!</h1>
+        <a href="./still-life.html"><h2>CSS Still Life</h2></a>
+        <a href="./exterior-yourokim.html"><h2>ASCII House</h2></a>
+        
+        <div class="container">
+          
+            <h2>garden of 365 clovers</h2>
+            <h3><a href="./final_with_about.html"><h2>* garden of 365 clovers</h2></a></h3>
+            <h3><a href="./user_interview.html"><h2>* user interview</h2></a></h3>
+          <div class="details">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </div>
+        <a href="./workshop.html"><h2>workshop</h2></a>
+        <a href="./wireframe.html"><h2>wireframe</h2></a>
+        <a href="./project1.html"><h2>project 1</h2></a>
+        <a href="./emoji.html"><h2>AI emoji</h2></a>
+    </div>
+
+    <script type="text/javascript" src="assets/script.js"></script>
+    <script>
+        // JavaScript to handle dark mode toggle
+        const darkModeToggle = document.getElementById('darkmode-toggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            darkModeToggle.textContent = body.classList.contains('dark-mode') ? 'light mode' : 'dark mode';
+        });
+
+        // JavaScript to handle the clock
+        function updateClock() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display clock immediately
+    </script>
+</body>
+</html>
